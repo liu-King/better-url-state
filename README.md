@@ -4,7 +4,7 @@
 
 ## 快速开始
 
-查看 [QUICKSTART.md](./QUICKSTART.md) 获取完整文档。
+查看 [QUICKSTART.md](./QUICKSTART.md) 使用方式。
 
 ## 特性
 
