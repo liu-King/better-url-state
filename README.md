@@ -1,4 +1,4 @@
-# @liucm/better-url-state
+# better-url-state
 
 一个简单、强大的 Vue 3 URL 状态管理 Hook。
 
