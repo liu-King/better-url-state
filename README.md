@@ -2,6 +2,10 @@
 
 一个简单、强大的 Vue 3 URL 状态管理 Hook。
 
+## 快速开始
+
+查看 [QUICKSTART.md](./QUICKSTART.md) 获取完整文档。
+
 ## 特性
 
 - 🚀 **简单易用** - 比 nuqs 更简洁的 API
@@ -27,25 +31,25 @@ pnpm add @liucm/better-url-state
 
 ```vue
 <script setup>
-import { useUrlState } from '@liucm/better-url-state'
+import { useUrlState } from "@liucm/better-url-state";
 
-const [filters, setFilters] = useUrlState('filters', {
-  status: 'active',
+const [filters, setFilters] = useUrlState("filters", {
+  status: "active",
   page: 1,
-  limit: 10
-})
+  limit: 10,
+});
 
 // 更新状态
 function updateStatus(status) {
-  setFilters({ status })
+  setFilters({ status });
 }
 
 // 批量更新
 function resetFilters() {
   setFilters({
-    status: 'active',
-    page: 1
-  })
+    status: "active",
+    page: 1,
+  });
 }
 </script>
 
@@ -69,10 +73,10 @@ URL 会变成: `?filters=status:active,page:1,limit:10`
 
 ```vue
 <script setup>
-import { useUrlParam } from '@liucm/better-url-state'
+import { useUrlParam } from "@liucm/better-url-state";
 
-const [tab, setTab] = useUrlParam('tab', 'home')
-const [search, setSearch] = useUrlParam('search', '')
+const [tab, setTab] = useUrlParam("tab", "home");
+const [search, setSearch] = useUrlParam("search", "");
 </script>
 
 <template>
@@ -84,7 +88,11 @@ const [search, setSearch] = useUrlParam('search', '')
       Profile
     </button>
 
-    <input v-model="search" @input="setSearch($event.target.value)" placeholder="搜索..." />
+    <input
+      v-model="search"
+      @input="setSearch($event.target.value)"
+      placeholder="搜索..."
+    />
   </div>
 </template>
 ```
@@ -95,19 +103,19 @@ const [search, setSearch] = useUrlParam('search', '')
 
 ```javascript
 // 类似 React setState 的函数式更新
-setFilters(prev => ({
-  page: prev.page + 1
-}))
+setFilters((prev) => ({
+  page: prev.page + 1,
+}));
 ```
 
 ### 复杂类型
 
 ```javascript
-const [config, setConfig] = useUrlState('config', {
-  sort: 'date',
-  order: 'desc',
-  filters: 'price:100-500' // 嵌套结构可以手动序列化
-})
+const [config, setConfig] = useUrlState("config", {
+  sort: "date",
+  order: "desc",
+  filters: "price:100-500", // 嵌套结构可以手动序列化
+});
 ```
 
 ## API
@@ -145,8 +153,9 @@ const [config, setConfig] = useUrlState('config', {
 默认 URL 格式为: `?key=field1:value1,field2:value2`
 
 例如:
+
 ```javascript
-useUrlState('filters', { status: 'active', page: 1, limit: 10 })
+useUrlState("filters", { status: "active", page: 1, limit: 10 });
 // URL: ?filters=status:active,page:1,limit:10
 ```
 
@@ -156,17 +165,17 @@ useUrlState('filters', { status: 'active', page: 1, limit: 10 })
 
 ```typescript
 interface Filters {
-  status: 'active' | 'inactive' | 'all'
-  page: number
-  limit: number
-  search?: string
+  status: "active" | "inactive" | "all";
+  page: number;
+  limit: number;
+  search?: string;
 }
 
-const [filters, setFilters] = useUrlState<Filters>('filters', {
-  status: 'active',
+const [filters, setFilters] = useUrlState<Filters>("filters", {
+  status: "active",
   page: 1,
-  limit: 10
-})
+  limit: 10,
+});
 
 // filters 的类型为 Readonly<Filters>
 // setFilters 完整的类型推断
@@ -178,9 +187,11 @@ const [filters, setFilters] = useUrlState<Filters>('filters', {
 
 ```javascript
 // 在路由组件中使用
-import { useUrlState } from '@liucm/better-url-state'
+import { useUrlState } from "@liucm/better-url-state";
 
-const [state, setState] = useUrlState('key', { /* ... */ })
+const [state, setState] = useUrlState("key", {
+  /* ... */
+});
 
 // 状态变化会自动调用 router.push 更新 URL
 ```
@@ -189,18 +200,22 @@ const [state, setState] = useUrlState('key', { /* ... */ })
 
 ## 与 nuqs 对比
 
-| 特性 | @liucm/better-url-state | nuqs |
-|------|-------------------------|------|
-| Vue 3 集成 | ✅ 原生支持 | ✅ 支持 |
-| API 简洁度 | ✅ 元组式 API | ⚠️ 对象式 API |
-| TypeScript | ✅ 完整支持 | ✅ 支持 |
-| 学习曲线 | ✅ 平缓 | ⚠️ 较陡 |
-| 嵌套对象 | ✅ 深度合并支持 | ✅ 支持 |
-| URL 格式 | ✅ 紧凑 | ⚠️ 较长 |
+| 特性       | @liucm/better-url-state | nuqs          |
+| ---------- | ----------------------- | ------------- |
+| Vue 3 集成 | ✅ 原生支持             | ✅ 支持       |
+| API 简洁度 | ✅ 元组式 API           | ⚠️ 对象式 API |
+| TypeScript | ✅ 完整支持             | ✅ 支持       |
+| 学习曲线   | ✅ 平缓                 | ⚠️ 较陡       |
+| 嵌套对象   | ✅ 深度合并支持         | ✅ 支持       |
+| URL 格式   | ✅ 紧凑                 | ⚠️ 较长       |
 
 ## 示例
 
 更多示例请查看 `examples` 目录。
+
+## 原理思路
+
+[IMPLEMENTATION.md](./IMPLEMENTATION.md)
 
 ## License
 
